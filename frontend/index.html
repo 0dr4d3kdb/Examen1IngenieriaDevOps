@@ -10,6 +10,10 @@
         h1 { color: #333; text-align: center; }
         form { display: grid; gap: 10px; margin-bottom: 20px; }
         input { padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+/* Validación visual de campos */
+        input:invalid:not(:placeholder-shown) { border-color: #dc3545; box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2); }
+        input:valid:not(:placeholder-shown) { border-color: #28a745; }
+        input:focus {  outline: none; border-color: #007bff;  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); }
         button { padding: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: all 0.3s ease; }
         button:hover { background: #0056b3; }
         button.delete { background: #dc3545; }
@@ -32,10 +36,10 @@
         <h1>Productos</h1>
         
         <form id="productForm">
-            <input type="number" id="id" placeholder="ID" required>
-            <input type="text" id="name" placeholder="Nombre" required>
-            <input type="number" id="price" placeholder="Precio" step="0.01" required>
-            <input type="number" id="quantity" placeholder="Cantidad" required>
+            <input type="number" id="id" placeholder="ID" required min="1" title="ID numérico positivo">
+            <input type="text" id="name" placeholder="Nombre" required minlength="2" maxlength="50" title="Mínimo 2 caracteres, máximo 50">
+            <input type="number" id="price" placeholder="Precio" step="0.01" required min="0.01" title="Precio mayor a 0">
+            <input type="number" id="quantity" placeholder="Quantity" required min="0" title="Quantity no negativa">
             <button type="submit" class="btn-primary">Agregar Producto</button>
         </form>
 
